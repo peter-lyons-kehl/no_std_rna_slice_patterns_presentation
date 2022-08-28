@@ -1,35 +1,41 @@
-# Embedded & low level-friendly patterns in _no_std_ Rust
-When viewing this [published as
-slides]https://peter-kehl.github.io/no_std_rna_transcription_patterns_presentation):
- 1. _Not_ for mobile devices/tiny screens. See a limited
-    [alternative
-    view](https://github.com/peter-kehl/embedded_low_level_rust/blob/main/README.md)
-    instead.
- 2. **Zoom out** (because the slides can't be scrolled down), until you see
-    numbers shown down to 0 below.
- 3. Prefer Firefox (better screen utilization than Chrome).
- 4. Press `?` question mark to get a help screen.
- 5. Press the bottom left button for a menu (with list of slides & themes).
- 6. Press letter **`o`** (lowercase), or **`ESC`** key, to show (or hide) an
-    **overview** of the nearby slides.
- 7. Press **`Ctrl Shift F`** to show (or hide) a **search** input (at the top
-    right). Type the text to search for and **Enter**. Click anywhere on the
-    slide before using the keys to navigate again. This search is **sticky**:
-    Any matching text will stay highlighted, even as you navigate to other
-    slides. (It highlights any matches on the overview screen, too.)
-```
-    5
-    4
-    3
-    2
-    1
-    0
-```
+Features of each pattern
 
-Note: TODO
-# Prerequisites
-Requiring `nightly` Rust (July 2022), but only for tests.
-Contribute, feedback: https://github.com/peter-kehl/no_std_rna_transcription_patterns_presentation
----
+| Feature | [01](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/01_ok_heap-string/src/lib.rs "01_ok_heap-string") |
+[02](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
+[03](https://github.com/peter-kehl/no_std_rna_transcription_patterns/blob/main/)
 
----
+| --- | --- |
+|extra work for securing observability/serialization: array or passed-in mutable slice could leak data!|
+|same compile-time limit for all instances (one type) <-> various compile-time limits per instance (generic type), can have a default limit <-> no compile-time limit|
+|random access (data storage) <-> sequential access only|
+| string data-specific: Unicode needs extra handling (04.. - anything with _bytes) <-> Unicode out of the box|
+| -- (Not `no_std` specific, but it matters in these examples.)|
+| field storage: owned <-> passed-in|
+| into_rna(): consume the original <-> refer to (the original) with a lifetime <-> copy (the original), no lifetime|
+| mutable (including "resize" of the valid/active data) - limited mutation (can't "resize") - immutable|
+| owned value (no lifetime) - lifetimed|
+| Clone - no Clone|
+|Clone derivable - not derivable or no Clone|
+|Copy - non-Copy (or `Copy` would be insecure).|
+|different types for mutation and for sharing: 06_slice-pass_in|
+| --- |
+|`dyn` (virtual) dispatch <-> static (compile-time) dispatch|
+| extra dispatch methods |
+| --- |
+| thread safe (`Sync` - if used in `std`) -> TODO "tests": `struct EnsureSync<T: Sync>; type _EnsureSyncRna = EnsureSync<Rna>;` We could use a (compile time) crate feature and conditional compilation to switch between single-threaded `Cell` and alternative ways, including https://docs.rs/mitochondria (`no_std`-friendly), https://docs.rs/lazycell, https://docs.rs/lazy-init. But then we couldn't easily test them all in the same workspace.
