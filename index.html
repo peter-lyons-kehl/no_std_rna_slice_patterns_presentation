@@ -1,0 +1,155 @@
+<!doctype html>
+<!-- This file is based on
+	 https://github.com/hakimel/reveal.js/blob/master/index.html. It contains
+	 tabs instead of spaces, because that's how the original file was. Keeping
+	 them as tabs makes it easier to compare/update.
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,
+		maximum-scale=1.0, user-scalable=no">
+		
+		<title>no_std (embedded/low level-compatible) patterns in Rust</title>
+
+		<!-- Clone https://github.com/hakimel/reveal.js next to this repo. -->
+		<!-- Unsure if we need reset.css, but https://revealjs.com demo uses it.
+		-->
+		<link rel="stylesheet" href="../reveal.js/dist/reset.css">
+
+		<link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+		<!-- Keep theme & highlight-theme in sync with one of "themes:"
+			 configuration entries for "menu" plugin below.
+		-->
+		<!-- If we loaded several themes, the one loaded last would become the
+			 default.
+
+			 https://github.com/denehyg/reveal.js-menu replaces that initial
+			 theme with any of the built-in themes that the user chooses.
+			 (reveal.js-menu needs "id" here.)
+		-->
+		<link rel="stylesheet"
+		href="../reveal.js/dist/theme/black_compact_verbatim_headers.css"
+		id="theme">
+
+		<!-- Theme used for syntax highlighted code. (reveal.js-menu needs "id"
+			 here.)
+		-->
+		<link rel="stylesheet"
+		href="https://highlightjs.org/static/demo/styles/base16/windows-high-contrast.css"
+		id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<!-- TODO put all <section> inside one "slides" -->
+				<section data-markdown="../no_std_rna_transcription_patterns/README.md"></section>
+    	        <section data-markdown="README.md"></section>
+				<!-- Viewing this locally? Clone
+					 https://github.com/peter-kehl/no_std_rna_transcription_patterns
+					 next to this repo -->
+			</div>
+		</div>
+
+		<!-- Clone https://github.com/hakimel/reveal.js next to this repo. -->
+		<script src="../reveal.js/dist/reveal.js"></script>
+
+		<!-- The following JS order may not matter, but let's keep it the same
+			 as in Reveal.initialize(...).
+		-->
+		<script src="../reveal.js/plugin/markdown/markdown.js"></script>
+
+		<!-- Clone https://github.com/befocken/revealjs-embed-code next to this
+		repo. -->
+		<script src="../revealjs-embed-code/embed-code.js"></script>
+
+		<!-- Clone https://github.com/hakimel/reveal.js next to this repo. -->
+		<script src="../reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="../reveal.js/plugin/notes/notes.js"></script>
+
+		<!-- Clone https://denehyg.github.io/reveal.js-menu next to this repo.
+		-->
+		<script src="../reveal.js-menu/menu.js"></script>
+
+		<!-- Clone https://github.com/hakimel/reveal.js next to this repo. -->
+		<script src="../reveal.js/plugin/search/search.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				slideNumber: "c/t",
+				//width: "100%", // no difference height: "20%", // not useful
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [
+					// The following four plugins have to be initialized in this
+					// order, so they apply in this order and before any other
+					// plugins.
+					RevealMarkdown,
+					EmbedCode,
+					RevealHighlight,
+					RevealNotes,
+
+					RevealMenu,
+
+					RevealSearch ],
+				// As per
+				// https://github.com/denehyg/reveal.js-menu#configuration
+				menu: {
+					//themes: true,
+					themes:  [
+						{
+							name: 'Dark',
+							theme: '../reveal.js/dist/theme/black_compact_verbatim_headers.css',
+							// Reveal.js comes with only two highlighting
+							// themes, both darkish. You could use:
+							// highlightTheme:
+							// '../reveal.js/plugin/highlight/monokai.css'
+							//
+							// highlightTheme:
+							// '../reveal.js/plugin/highlight/zenburn.css'
+							//
+							// OR choose from many themes from
+							// https://highlightjs.org, for example:
+							//
+							// The only dark high contrast highlight theme:
+							highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast.css'
+							//
+							// But, if you expect high traffic, clone
+							// https://github.com/highlightjs/highlight.js next
+							// to this repo and use (for example):
+							//
+							// highlightTheme:
+							// '../highlight.js/src/styles/base16/windows-high-contrast.css'
+						},
+						{
+							name: 'Light',
+							theme: '../reveal.js/dist/theme/white_compact_verbatim_headers.css',
+							// No light highlight themes in Reveal.js. The only
+							// light high contrast highlight theme:
+							highlightTheme: 'https://highlightjs.org/static/demo/styles/base16/windows-high-contrast-light.css'
+							//
+							// But, if you expect high traffic, clone
+							// https://github.com/highlightjs/highlight.js next
+							// to this repo and use (for example):
+							//
+							// highlightTheme:
+							// '../highlight.js/src/styles/base16/windows-high-contrast-light.css'
+						}
+
+					],
+					themesPath: '../reveal.js/dist/theme/',
+					transitions: ['None', 'Fade', 'Slide']
+				},
+				// width and margin help <pre><code> have more space
+				width: "100%",
+				margin: 0,
+				// Don't use: height: "100%". Otherwise <pre><code> is narrow.
+				//height: "100%", Don't use: disableLayout: true in general.
+				//disableLayout: true
+			});
+		</script>
+	</body>
+</html>
