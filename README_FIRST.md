@@ -3,7 +3,7 @@ When viewing this [published as
 slides]https://peter-kehl.github.io/no_std_rna_transcription_patterns_presentation):
  1. _Not_ for mobile devices/tiny screens. See a limited
     [alternative
-    view](https://github.com/peter-kehl/embedded_low_level_rust/blob/main/README.md)
+    view](https://github.com/peter-kehl/no_std_rna_slice_patterns_presentation/blob/main/README.md)
     instead.
  2. **Zoom out** (because the slides can't be scrolled down), until you see
     numbers shown down to 0 below.
